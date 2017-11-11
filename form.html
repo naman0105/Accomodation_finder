@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Hello, world!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#"><h1>Accomodation Finder</h1></a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+
+        <form class="form-inline mt-2 mt-md-0 mr-auto">
+
+        </form>
+        <ul class="navbar-nav " style="margin-right:10%">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><h4>Home</h4><span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><h4>Search</h4><span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><h4>Registration</h4><span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+<br /><br /><br/>
+
+</br/>
+
+    <div class="container">
+      <form action = "submit.php" method = "post">
+        <div class="row">
+          <h3>Hostel Details :</h3>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
+              <div class="form-group">
+                  <span for="name">Name :</span>
+                  <input class="form-control" type="text" name="name" id="name"/>
+              </div>
+              <div class="form-group">
+                <span for="type">Hostel Type :</span>
+                <br />
+                <select name = "type" class="form-control">
+                  <option value="Girls">Girls</option>
+                  <option value="Boys">Boys</option>
+                  <option value="Both">Both</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label class="radio-inline">
+                      PG      :      <input type="radio" name="hostel_pg" value = '0'/>
+                    </label>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="radio-inline">
+                      Hostel     :      <input type="radio" name="hostel_pg" value = '1'/>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <span for="capacity">Capacity :</span>
+                <input class="form-control" type="number" min="1" id="lname" name="capacity" />
+              </div>
+
+              <div class="form-group">
+                <label for="curfew">Curfew Time :</label>
+                <input class="form-control" type="time" name="curfew" id="curfew"/>
+              </div>
+              <div class="form-group">
+                <span for="locality">Locality :</span>
+                <input class="form-control" type="text" id="locality" name="locality" />
+              </div>
+              <div class="form-group">
+                <span for="pincode">Pincode :</span>
+                <input class="form-control" type="text" id="pincode" name="pincode" />
+              </div>
+              <div class="from-group">
+                <label for="city">City :</label>
+                <input id="city" name="city" type="text" class="form-control" />
+
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <h3>Room Details :</h3>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
+            <div class="form-group">
+              <label for="no">Number of types of rooms :</label>
+              <select name="nos" class = "form-control" onchange="addroomforms(this);">
+                <option value="choose" selected >choose</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
+            <div id="room">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <h3>Mess :</h3>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
+            <div class="form-group">
+              <span for="mess_capacity">Mess Capacity :</span>
+              <input id="mess_capacity" type="number" name="mess_capacity" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <span for="no_of_meals">No of Meals :</span>
+              <input class="form-control" type="number" name="no_of_meals" id="no_of_meals" />
+            </div>
+            <div class="form-group">
+              <span for="mess_fees">Mess Fees :</span>
+              <input class="form-control" name="mess_fees" type="number" id="mess_fees" />
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label class="radio-inline">
+                    veg      :      <input type="radio" name="veg_nonveg" value= '1'/>
+                  </label>
+                </div>
+                <div class="col-sm-6">
+                  <label class="radio-inline">
+                    non-veg     :      <input type="radio" name="veg_nonveg" value = '0'/>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <h3>Owner Details :</h3>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
+            <div class="form-group">
+              <label for="owner_name">Owner Name :</label>
+              <input type = "text" id="owner_name" name ="owner_name" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="owner_phone">Phone Number :</label>
+              <input type="tel" id="owner_phone" name="owner_phone" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="owner_email">Email ID :</label>
+              <input type="email" id="owner_email" name="owner_email" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <hr />
+        <div class="row">
+          <div class="col-xs-12 offset-lg-6 offset-md-6 offset-sm-6 offset-xs-6">
+            <div >
+              <button type="submit" class="btn btn-primary" id="sub">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script scr="javascript/first.js" type="text/javascript"></script>
+    <script>
+    var no_of_rooms = 0;
+
+
+
+    function addroomforms(sel){
+      // var value1 = document.getElementById('no').value;
+      var value1 = sel.options[sel.selectedIndex].text;
+      for(var i=0;i<value1;i++){
+        addRoom();
+      }
+      // var va = document.getElementById('no').value = value1;
+    }
+
+    function addRoom(){
+      no_of_rooms++;
+      // document.getElementById('no').innerHTML = "Types of Rooms ::" + no_of_rooms;
+      var main = document.getElementById('room');
+
+      var second = document.createElement('div');
+      second.className = "form-group";
+      var span = document.createElement("span");
+      var t = document.createTextNode("Room Capacity :");
+      span.appendChild(t);
+      var input = document.createElement("input");
+      input.name = "capacity" + no_of_rooms;
+      input.className = "form-control";
+      input.type = "number";
+      input.id = "capacity" + no_of_rooms;
+      second.appendChild(span);
+      second.appendChild(input);
+
+      var third = document.createElement('div');
+      third.className = "form-group";
+      var span = document.createElement("span");
+      var t = document.createTextNode("No of Rooms :");
+      span.appendChild(t);
+      var input = document.createElement("input");
+      input.type= "number";
+      input.className = "form-control";
+      input.name = "no_of_rooms" + no_of_rooms;
+      input.id = "no_of_rooms" + no_of_rooms;
+      third.appendChild(span);
+      third.appendChild(input);
+
+      var fourth = document.createElement('div');
+      fourth.className = "form-group";
+      var span = document.createElement("span");
+      var t = document.createTextNode("Fees :");
+      span.appendChild(t);
+      var input = document.createElement("input");
+      input.className = "form-control";
+      input.type = "number";
+      input.min = "100";
+      input.name = "fees" + no_of_rooms;
+      input.id = "fees" + no_of_rooms;
+      fourth.appendChild(span);
+      fourth.appendChild(input);
+
+      var fifth = document.createElement('div');
+      fifth.className = "form-group";
+      var label = document.createElement("label");
+      var t = document.createTextNode("Wifi : ");
+      label.appendChild(t);
+      var input = document.createElement("input");
+      input.type ="checkbox";
+      input.value = '1';
+      input.name = "wifi" + no_of_rooms;
+      input.id = "wifi" + no_of_rooms;
+      label.appendChild(input);
+      fifth.appendChild(label);
+      // fifth.appendChild(input);
+
+      var sixth = document.createElement('div');
+      sixth.className = "form-group";
+      var label = document.createElement("label");
+      var t = document.createTextNode("AC : ");
+      label.appendChild(t);
+      var input = document.createElement("input");
+      input.type ="checkbox";
+      input.name = "ac" + no_of_rooms;
+      input.value = '1';
+      input.id = "ac" + no_of_rooms;
+      label.appendChild(input);
+      sixth.appendChild(label);
+
+      var seven = document.createElement('div');
+      seven.className = "form-group";
+      var label = document.createElement("label");
+      var t = document.createTextNode("Attached Bathroom : ");
+      label.appendChild(t);
+      var input = document.createElement("input");
+      input.type ="checkbox";
+      input.name = "bathroom" + no_of_rooms;
+      input.value = '1';
+      input.id = "bathroom" + no_of_rooms;
+      label.appendChild(input);
+      seven.appendChild(label);
+
+      main.appendChild(second);
+      main.appendChild(third);
+      main.appendChild(fourth);
+      main.appendChild(fifth);
+      main.appendChild(sixth);
+      main.appendChild(seven);
+      main.appendChild(document.createElement('hr'));
+    }
+
+
+
+    // $(document).ready(function() {
+    //    $('#sub').click(function() {
+    //       $.ajax({
+    //          url: 'submit.php',
+    //          type: "POST",
+    //          dataType: 'json',
+    //          data: { 'no' : no_of_rooms },
+    //          error: function(XMLHttpRequest, textStatus, errorThrown) {
+    //             //case error
+    //           }
+    //        });
+    //     });
+    // });
+    </script>
+  </body>
+</html>
