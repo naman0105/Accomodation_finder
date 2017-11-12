@@ -49,17 +49,12 @@
 <?php
   include 'dbconnect.php';
 
-$ac = isset($_POST['ac']) ? $_POST['ac'] : '0' ;
-$bathroom = isset($_POST['bathroom']) ? $_POST['bathroom'] : '0' ;
-$wifi = isset($_POST['wifi']) ? $_POST['wifi'] : '0' ;
-
   $sql = "select Room_capacity,Fees,H_name,Type,Curfew,Owner_name,Phone_number,Email_ID,Capacity,Total_no_of_rooms,no_of_meals,Mess_fees,Mess_capacity
           from Hostel natural join Room_types natural join mess natural join Owner_details
-          where AC =".$ac." and Wifi =".$wifi." and Attached_Bathroom =".$bathroom." and Fees <=".$_POST['lessfees']."
-          and Hostel =".$_POST['hostel']." and Veg = ".$_POST['veg']." and Type = '".$_POST['type']."';";
+          where H_name ='".$_POST['hostel']."';";
 
   $result =  $conn->query($sql);
-  // echo $_POST['type'];
+
 ?>
 <table class="table table-inverse">
   <thead>

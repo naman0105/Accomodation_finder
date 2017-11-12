@@ -7,10 +7,14 @@
 
     <!-- Bootstrap CSS -->
 
-
+    <style>
+    body{
+      background-image: url("https://wallpaperscraft.com/image/board_black_line_texture_background_wood_55220_1920x1080.jpg");
+    }
+    </style>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   </head>
-  <body>
+  <body class="text-white">
 
     <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +28,13 @@
         </form>
         <ul class="navbar-nav " style="margin-right:10%">
           <li class="nav-item">
-            <a class="nav-link" href="#"><h4>Home</h4><span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html"><h4>Home</h4><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#"><h4>Search</h4><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><h4>Registration</h4><span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="form.html"><h4>Registration</h4><span class="sr-only">(current)</span></a>
           </li>
         </ul>
 
@@ -125,6 +129,8 @@
                   <input class="form-check-input" name="wifi" type="checkbox" value="1"> : wifi
                 </label>
               </div>
+            </div>
+          </div>
 
 
 
@@ -140,6 +146,85 @@
         </div>
       </form>
     </div>
+
+      <hr />
+      <br />
+      <br />
+      <hr />
+      <div class="container">
+        <form method="post" action="submit3.php">
+          <div class="row">
+            <h3>Get details About :</h3>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
+              <div class="form-group">
+                <span for="hostel">Get details of a particular Hostel :</span>
+                <select name="hostel" class="form-control">
+                  <option value="">choose</option>
+                  <?php
+                      include 'dbconnect.php';
+                      $q = "SELECT * FROM Hostel";
+                      $results=$conn -> query($q);
+                      //loop
+                      while($row = mysqli_fetch_array($results))
+                      {
+                       ?><option value="<?php echo $row['H_name']; ?>"> <?php echo $row['H_name'];?></option>
+                   <?php }?>
+                  ?>
+                </select>
+              </div>
+              <hr />
+              <hr />
+              <div class="row">
+                <div class="col-xs-12 offset-lg-6 offset-md-6 offset-sm-6 offset-xs-6">
+                  <div >
+                    <button type="submit" class="btn btn-primary" id="sub">Submit</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+
+        <form method="post" action="submit4.php">
+          <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
+              <div class="form-group">
+                <span for="locality">Get details of all the hostels in a particular area :</span>
+                <select name="locality" class="form-control">
+                  <option value="">choose</option>
+                  <?php
+                      include 'dbconnect.php';
+                      $q = "SELECT * FROM area";
+                      $results=$conn -> query($q);
+                      //loop
+                      while($row = mysqli_fetch_array($results))
+                      {
+                       ?><option value="<?php echo $row['locality']; ?>"> <?php echo $row['locality'];?></option>
+                   <?php }?>
+                  ?>
+                </select>
+              </div>
+              <hr />
+              <hr />
+              <div class="row">
+                <div class="col-xs-12 offset-lg-6 offset-md-6 offset-sm-6 offset-xs-6">
+                  <div >
+                    <button type="submit" class="btn btn-primary" id="sub">Submit</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+
 
 
 
