@@ -26,8 +26,8 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html"><h4>Home</h4><span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"><h4>Search</h4><span class="sr-only">(current)</span></a>
+          <li class="nav-item ">
+            <a class="nav-link" href="search.php"><h4>Search</h4><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="form.html"><h4>Registration</h4><span class="sr-only">(current)</span></a>
@@ -46,20 +46,21 @@
 <?php
 // echo "the first name  :: ". $_POST["name"] . $_POST["capacity1"];
 
-$dbname = "hostels";
-$username = "root";
-$password = "";
-$servername ="localhost";
-
-
-// $val = NULL;
-// if (isset($_POST['no'])) {
-//     $val = $_POST['no'];
-// }
-// echo "variable is : .$val";
-
-
-$conn = new mysqli($servername,$username,$password,$dbname);
+// $dbname = "hostels";
+// $username = "root";
+// $password = "";
+// $servername ="localhost";
+//
+$inserted = 0;
+// // $val = NULL;
+// // if (isset($_POST['no'])) {
+// //     $val = $_POST['no'];
+// // }
+// // echo "variable is : .$val";
+//
+//
+// $conn = new mysqli($servername,$username,$password,$dbname);
+include "dbconnect.php";
 
 if( $conn->connect_error){
 	die("connection failier". $conn->connect_error);
@@ -80,10 +81,11 @@ Capacity) values('".$_POST["name"]."','".$_POST["pincode"]."','".$_POST["type"].
 
 
 if($conn->query($sql)){
-	echo "inserted";
+	// echo "inserted";
+	$inserted++;
 }
 else{
-	echo "error " . $conn->error;
+	// echo "error " . $conn->error;
 }
 $result = $conn->query($sql1);
 $flag = 0;
@@ -99,7 +101,9 @@ if ($result->num_rows > 0) {
 
 if( $flag == 0){
   if($conn->query($sql2)){
-  	echo "inserted";
+  	// echo "inserted";
+		$inserted++;
+
   }
   else{
   	echo "error " . $conn->error;
@@ -117,13 +121,15 @@ $last_id = NULL;
 
 if ($conn->query($sql3) === TRUE) {
     $last_id = $conn->insert_id;
-    echo "the last is ". $last_id;
+    // echo "the last is ". $last_id;
 }
 
 $sql4 = "insert into mess(no_of_meals,Mess_fees,Mess_capacity,Veg,ID) values('".$_POST["no_of_meals"]."','".$_POST["mess_fees"]."','".$_POST["mess_capacity"]."','".$_POST["veg_nonveg"]."','".$last_id."');";
 
 if($conn->query($sql4)){
-  echo "inserted";
+  // echo "inserted";
+	$inserted++;
+
 }
 else{
   echo "error".$conn->error;
@@ -145,7 +151,8 @@ values('".$checkbox1."'
 ,'".$checkbox."','".$_POST["capacity".(string)$x]."','".$_POST["fees".(string)$x]."','".$checkbox2."','".$_POST["no_of_rooms".(string)$x]."','".$last_id."');";
 
 if($conn->query($sql5)){
-  echo "inserted";
+  // echo "inserted";
+	$inserted++;
 }
 else{
   echo "error".$conn->error;
@@ -153,9 +160,18 @@ else{
 
 }
 
-
+if($inserted == 4){
+	echo "<center>
+		<h2>your hostel/pg is successfully registered !!</h2>
+	</center>";
+}else{
+	echo "<center>
+		<h2>Some problem registering your hostel/PG, Check if the hostel/PG is already registered !!</h2>
+	</center>";
+}
 $conn->close();
 ?>
-
-</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </html>

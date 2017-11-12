@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <style>
     body{
-      background-image: url("https://wallpaperscraft.com/image/board_black_line_texture_background_wood_55220_1920x1080.jpg");
+      background-image: url("assets/images/4.jpg");
     }
     </style>
 
@@ -31,8 +31,8 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html"><h4>Home</h4><span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"><h4>Search</h4><span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" href="search.php"><h4>Search</h4><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="form.html"><h4>Registration</h4><span class="sr-only">(current)</span></a>
@@ -100,6 +100,8 @@
  ?>
    </tbody>
  </table>
-
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   </body>
 </html>
