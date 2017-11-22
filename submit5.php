@@ -30,7 +30,7 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html"><h4>Home</h4><span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item">
             <a class="nav-link" href="search.php"><h4>Search</h4><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
@@ -44,18 +44,9 @@
 <br /><br /><br/>
 
 </br/>
-
 <?php
   include 'dbconnect.php';
-
-$ac = isset($_POST['ac']) ? $_POST['ac'] : '0' ;
-$bathroom = isset($_POST['bathroom']) ? $_POST['bathroom'] : '0' ;
-$wifi = isset($_POST['wifi']) ? $_POST['wifi'] : '0' ;
-
-  $sql = "select Room_capacity,Fees,H_name,Type,Curfew,Owner_name,Phone_number,Email_ID,Capacity,Total_no_of_rooms,no_of_meals,Mess_fees,Mess_capacity
-          from Hostel natural join Room_types natural join mess natural join Owner_details
-          where AC =".$ac." and Wifi =".$wifi." and Attached_Bathroom =".$bathroom." and Fees <=".$_POST['lessfees']."
-          and Hostel =".$_POST['hostel']." and Veg = ".$_POST['veg']." and Type = '".$_POST['type']."';";
+  $sql = "select no_of_hostels,No_of_pgs,city,locality,pincode from area";
 
   $result =  $conn->query($sql);
   // echo $_POST['type'];
@@ -64,18 +55,11 @@ $wifi = isset($_POST['wifi']) ? $_POST['wifi'] : '0' ;
   <thead>
     <tr>
       <th>#</th>
-      <th>Hostel Name</th>
-      <th>Type</th>
-      <th>Fees</th>
-      <th>Curfew</th>
-      <th>Capacity</th>
-      <th>Room Capacity</th>
-      <th>Number of Meals</th>
-      <th>Mess Fees</th>
-      <th>Mess Capacity</th>
-      <th>Owner Name</th>
-      <th>Phone Number</th>
-      <th>Email</th>
+      <th>City</th>
+      <th>Locality</th>
+      <th>Pincode</th>
+      <th>Number of PGs</th>
+      <th>Number of Hostels</th>
 
     </tr>
   </thead>
@@ -85,18 +69,11 @@ $wifi = isset($_POST['wifi']) ? $_POST['wifi'] : '0' ;
   while($row = $result->fetch_assoc()){
     echo "<tr>";
     echo "<th>".$count."</th>";
-    echo "<td>".$row['H_name']."</td>";
-    echo "<td>".$row['Type']."</td>";
-    echo "<td>".$row['Fees']."</td>";
-    echo "<td>".$row['Curfew']."</td>";
-    echo "<td>".$row['Capacity']."</td>";
-    echo "<td>".$row['Room_capacity']."</td>";
-    echo "<td>".$row['no_of_meals']."</td>";
-    echo "<td>".$row['Mess_fees']."</td>";
-    echo "<td>".$row['Mess_capacity']."</td>";
-    echo "<td>".$row['Owner_name']."</td>";
-    echo "<td>".$row['Phone_number']."</td>";
-    echo "<td>".$row['Email_ID']."</td>";
+    echo "<td>".$row['city']."</td>";
+    echo "<td>".$row['locality']."</td>";
+    echo "<td>".$row['pincode']."</td>";
+    echo "<td>".$row['No_of_pgs']."</td>";
+    echo "<td>".$row['no_of_hostels']."</td>";
     echo "</tr>";
     $count++;
   }
@@ -104,6 +81,7 @@ $wifi = isset($_POST['wifi']) ? $_POST['wifi'] : '0' ;
  ?>
    </tbody>
  </table>
+
  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>

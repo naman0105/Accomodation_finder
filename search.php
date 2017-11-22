@@ -1,7 +1,6 @@
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
-    <!-- Required meta tags -->
+    <title>Accomodation Finder</title>    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -90,9 +89,9 @@
                 <span for="type">Hostel/PG Type :</span>
                 <br />
                 <select name = "type" class="form-control">
-                  <option value="Girls">Girls</option>
-                  <option value="Boys">Boys</option>
-                  <option value="Both">Both</option>
+                  <option value="Girls">Only Girls</option>
+                  <option value="Boys">Only Boys</option>
+                  <option value="Both">No Constraints</option>
                 </select>
               </div>
               <div class="form-group">
@@ -222,9 +221,29 @@
             </div>
           </div>
         </form>
+        <hr />
+        <hr />
 
+        <form method="post" action="submit5.php">
+          <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
+              <div class="form-group">
+                <span >Details of number of hostels and pgs in different areas :</span>
+
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 offset-lg-6 offset-md-6 offset-sm-6 offset-xs-6">
+                  <div >
+                    <button type="submit" class="btn btn-primary" id="sub">Click here</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
       </div>
-
 
 
 

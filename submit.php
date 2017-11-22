@@ -1,7 +1,6 @@
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
-    <!-- Required meta tags -->
+    <title>Accomodation Finder</title>    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -98,6 +97,9 @@ if ($result->num_rows > 0) {
 } else {
     $flag = 0;
 }
+if( $flag == 1){
+  $inserted++;
+}
 
 if( $flag == 0){
   if($conn->query($sql2)){
@@ -152,21 +154,40 @@ values('".$checkbox1."'
 
 if($conn->query($sql5)){
   // echo "inserted";
-	$inserted++;
+	// $inserted++;
 }
 else{
   echo "error".$conn->error;
 }
 
 }
+$pgs = 0;
+if( $_POST['hostel_pg'] == '0'){
+  $sql6 = "select No_of_pgs from area where pincode = '".$_POST["pincode"]."'";
+  $nos = $conn->query($sql6);
+  $row = $nos->fetch_assoc();
+  $pgs = $row['No_of_pgs'] + 1;
+  $sql7 = "update area set No_of_pgs ='".$pgs."' where pincode ='".$_POST["pincode"]."'";
+  $conn->query($sql7);
+}
+else{
+  $sql6 = "select no_of_hostels from area where pincode = '".$_POST["pincode"]."'";
+  $nos = $conn->query($sql6);
+  $row = $nos->fetch_assoc();
+  $hostels = $row['no_of_hostels'];
+  $hostels++;
+  $sql7 = "update area set no_of_hostels ='".$hostels."' where pincode ='".$_POST["pincode"]."'";
+  $conn->query($sql7);
+}
 
-if($inserted == 4){
+
+if($inserted == 3){
 	echo "<center>
 		<h2>your hostel/pg is successfully registered !!</h2>
 	</center>";
 }else{
 	echo "<center>
-		<h2>Some problem registering your hostel/PG, Check if the hostel/PG is already registered !!</h2>
+		<h2>Some problem registering your hostel/PG, Check if the hostel/PG is registered or register again !!</h2>
 	</center>";
 }
 $conn->close();

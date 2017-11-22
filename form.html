@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
-    <!-- Required meta tags -->
+    <title>Accomodation Finder</title>    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -62,9 +61,9 @@
                 <span for="type">Hostel Type :</span>
                 <br />
                 <select name = "type" class="form-control">
-                  <option value="Girls">Girls</option>
-                  <option value="Boys">Boys</option>
-                  <option value="Both">Both</option>
+                  <option value="Girls">Only Girls</option>
+                  <option value="Boys">Only Boys</option>
+                  <option value="Both">No Constraints</option>
                 </select>
               </div>
               <div class="form-group">
@@ -140,15 +139,15 @@
           <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1">
             <div class="form-group">
               <span for="mess_capacity">Mess Capacity :</span>
-              <input id="mess_capacity" type="number" name="mess_capacity" class="form-control"/>
+              <input id="mess_capacity" type="number" min="1" name="mess_capacity" class="form-control"/>
             </div>
             <div class="form-group">
               <span for="no_of_meals">No of Meals :</span>
-              <input class="form-control" type="number" name="no_of_meals" id="no_of_meals" />
+              <input class="form-control" type="number" min="1" name="no_of_meals" id="no_of_meals" />
             </div>
             <div class="form-group">
               <span for="mess_fees">Mess Fees :</span>
-              <input class="form-control" name="mess_fees" type="number" id="mess_fees" />
+              <input class="form-control" name="mess_fees" min="1" type="number" id="mess_fees" />
             </div>
             <div class="form-group">
               <div class="row">
@@ -179,7 +178,10 @@
             </div>
             <div class="form-group">
               <label for="owner_phone">Phone Number :</label>
-              <input type="tel" id="owner_phone" name="owner_phone" class="form-control"/>
+              <input type="tel" id="owner_phone" name="owner_phone" class="form-control" onkeyup="checkPhone(this)"/>
+              <p id="validation">
+
+              </p>
             </div>
             <div class="form-group">
               <label for="owner_email">Email ID :</label>
@@ -328,6 +330,31 @@
     //        });
     //     });
     // });
+
+    function checkPhone(sel){
+      var value = document.getElementById('owner_phone').value;
+
+      if ( value.length != 10){
+        document.getElementById('sub').disabled = true;
+        document.getElementById('validation').innerHTML = "Phone number should have 10 digits";
+      }
+      else{
+        document.getElementById('validation').innerHTML = "";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("validation").innerHTML = this.responseText;
+                if(this.responseText == ""){
+                  document.getElementById('sub').disabled = false;
+                }else{
+                  document.getElementById('sub').disabled = true;
+                }
+            }
+        };
+        xmlhttp.open("GET", "phoneValidation.php?q=" + value, true);
+        xmlhttp.send();
+      }
+    }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
